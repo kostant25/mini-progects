@@ -1,0 +1,56 @@
+.container {
+    margin: 0 auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#color-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 18px 8px rgba(34, 60, 80, 0.2);
+}
+
+.color-code-container {
+    display: flex;
+    align-items: center;
+}
+
+#copyBtn {
+    border: none;
+    padding: 0;
+}
+
+#copyBtn:hover {
+    opacity: 0.7;
+}
+
+#copyBtn:active {
+    transform: scale(98%);
+}
+
+#color-code {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+#generate-color {
+    border: none;
+    background-color: #000;
+    color: #f3f3f3;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#generate-color:hover {
+    opacity: 0.8;
+}
+
+#generate-color:active {
+    transform: scale(98%);
+}
