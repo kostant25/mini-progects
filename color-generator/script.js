@@ -20,7 +20,7 @@ document.addEventListener('copy', e => {
     e.clipboardData.setData('text/plain', currentColor);
 })
 
-document.addEventListener('keydown', e => {
+document.addEventListener('keypress', e => {
     if (e.key === ' ') {
         generateColor()
     }
