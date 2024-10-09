@@ -55,7 +55,6 @@ const crawl = () => {
         const newHead = [snake[0][0] + speed.x, snake[0][1] + speed.y]
         for (let i = snake.length - 1; i > 0; i--) {
             snake[i] = snake[i - 1]
-            snake[i] = snake[i - 1]
         }
         snake[0] = newHead
     }
@@ -64,6 +63,7 @@ const crawl = () => {
 const checkApple = () => {
     if (apple[0] === snake[0][0] && apple[1] === snake[0][1]) {
         apple = [Math.floor(Math.random() * 36), Math.floor(Math.random() * 36)]
+        snake.push(snake[snake.length - 1])
     }
 }
 
