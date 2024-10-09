@@ -18,7 +18,7 @@ const speed = {
 const size = 15
 const fps = 50
 
-let apple = [Math.floor(Math.random() * 36), Math.floor(Math.random() * 36)]
+let apple = [Math.floor(Math.random() * 35), Math.floor(Math.random() * 35)]
 const snake = [
     [17, 17],
     [16, 17],
@@ -67,11 +67,21 @@ const checkApple = () => {
     }
 }
 
+const checkTail = () => {
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[0][0] === snake[i][0] && snake[0][1] === snake[i][1]) {
+            clearInterval(gameLoop)
+            return true
+        }
+    }
+}
+
 const render = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw(0, 0, canvas.width, canvas.height, colors.backGround);
     crawl()
     checkApple()
+    if (checkTail()) return
     drawSnake()
     draw(apple[0] * size, apple[1] * size, size, size, colors.apple)
 }
