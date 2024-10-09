@@ -10,6 +10,7 @@ const colors = {
     snakeBody: '#77ff81',
     backGround: '#000000',
     apple: '#ff2424',
+    font: '#ececec'
 }
 const speed = {
     x: 0,
@@ -76,12 +77,23 @@ const checkTail = () => {
     }
 }
 
+const gameOverScreen = () => {
+    ctx.fillStyle = colors.font
+    ctx.font = 'bold 50px sans-serif'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillText('GAME OVER', 17 * size, 17 * size)
+}
+
 const render = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     draw(0, 0, canvas.width, canvas.height, colors.backGround);
     crawl()
     checkApple()
-    if (checkTail()) return
+    if (checkTail()) {
+        gameOverScreen()
+        return
+    }
     drawSnake()
     draw(apple[0] * size, apple[1] * size, size, size, colors.apple)
 }
