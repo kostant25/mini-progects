@@ -18,6 +18,7 @@ const speed = {
 const size = 15
 const fps = 50
 
+let apple = [Math.floor(Math.random() * 36), Math.floor(Math.random() * 36)]
 const snake = [
     [17, 17],
     [16, 17],
@@ -26,15 +27,13 @@ const snake = [
     [13, 17],
 ]
 
-const drawBackGround = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = colors.backGround;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+const draw = (x, y, w, h, color) => {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, w, h);
 }
 
 const drawSnake = () => {
     snake.forEach((item, index) => {
-        ctx.fillStyle = index === 0 ? colors.snakeHead : colors.snakeBody;
         if (item[0] >= canvas.width / size) {
             item[0] = 0;
         } else if (item[0] < 0) {
@@ -46,7 +45,8 @@ const drawSnake = () => {
             item[1] = canvas.height / size - 1;
         }
 
-        ctx.fillRect(item[0] * size, item[1] * size, size, size)
+        let color = index === 0 ? colors.snakeHead : colors.snakeBody;
+        draw(item[0] * size, item[1] * size, size, size, color)
     })
 }
 
@@ -61,10 +61,19 @@ const crawl = () => {
     }
 }
 
+const checkApple = () => {
+    if (apple[0] === snake[0][0] && apple[1] === snake[0][1]) {
+        apple = [Math.floor(Math.random() * 36), Math.floor(Math.random() * 36)]
+    }
+}
+
 const render = () => {
-    drawBackGround()
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    draw(0, 0, canvas.width, canvas.height, colors.backGround);
     crawl()
+    checkApple()
     drawSnake()
+    draw(apple[0] * size, apple[1] * size, size, size, colors.apple)
 }
 
 document.addEventListener('keydown', (e) => {
@@ -95,6 +104,5 @@ document.addEventListener('keydown', (e) => {
 
     }
 })
-drawBackGround()
-drawSnake()
+
 const gameLoop = setInterval(render, fps)
